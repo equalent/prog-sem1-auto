@@ -1,6 +1,6 @@
 #include "common.h"
 
-int binarySearch(int arr[], int l, int r, int x, int counter,int k)
+int binarySearch(int arr[], int l, int r, int x,int counter,int k)
 {
 
     if (r >= l) {
@@ -9,7 +9,7 @@ int binarySearch(int arr[], int l, int r, int x, int counter,int k)
         // If the element is present at the middle
         // itself
         if (arr[mid] == x)
-            counter++;
+            
             return mid;
 
         // If element is smaller than mid, then
@@ -29,6 +29,22 @@ int binarySearch(int arr[], int l, int r, int x, int counter,int k)
     return -1;
 }
 
+int binary_search(int* arr, int size, int target)
+{
+    int index, power;
+
+    for (power = 1; power < size; power <<= 1);
+
+    for (index = 0; power; power >>= 1)
+        if (index + power < size && arr[index + power] <= target)
+            index += power;
+
+    if (arr[index] == target)
+        return index;
+    return -1;
+}
+
+
 int main(void)
 {
     int arr[] = { 1,2,3,4,5,6,7,8,9,10};
@@ -39,9 +55,11 @@ int main(void)
     scanf("%d", &n);
     printf("k: ");
     scanf("%d", &k);
+    int p = rand(0, n);
     int x = 10;
-    int result = binarySearch(arr, 0, n - 1, x,counter,k);
-    if (result == -1) 
+    int result = binary_search(arr,n-1,p)
+    int counter = binarySearch(arr, 0, n - 1, x,k);
+    if (counter == -1) 
     {
         printf("Takoe ne vozhmozhno");
     }
